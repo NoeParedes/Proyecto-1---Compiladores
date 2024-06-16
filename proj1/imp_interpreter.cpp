@@ -168,3 +168,8 @@ ImpValue ImpInterpreter::visit(CondExp* e) {
   else
     return e->etrue->accept(this);
 }
+
+ImpValue ImpInterpreter::visit(CommentExp * e)
+{
+return ImpValue();
+}

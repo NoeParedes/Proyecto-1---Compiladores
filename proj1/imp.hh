@@ -79,7 +79,15 @@ public:
   ~CondExp();
 };
 
-
+class CommentExp : public Exp {
+public:
+  Exp* exp; //uuede ser NULL, ya que un comentario no tiene expresión asociada
+  CommentExp(Exp* e = nullptr);
+  int accept(ImpVisitor* v);
+  ImpValue accept(ImpValueVisitor* v);
+  ImpType accept(TypeVisitor* v);
+  ~CommentExp();
+};
 
 class Stm {
 public:

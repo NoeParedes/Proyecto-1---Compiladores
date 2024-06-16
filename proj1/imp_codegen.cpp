@@ -163,3 +163,8 @@ int ImpCodeGen::visit(CondExp* e) {
 
   return 0;
 }
+int ImpCodeGen::visit(CommentExp* e) {
+  // Aquí puedes optar por simplemente ignorar los comentarios en la generación de código
+  // o generar algún comentario específico en el código destino si es necesario.
+  return 0;
+}

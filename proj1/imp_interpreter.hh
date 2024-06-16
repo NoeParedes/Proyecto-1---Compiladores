@@ -29,6 +29,7 @@ public:
   ImpValue visit(IdExp* e);
   ImpValue visit(ParenthExp* e);
   ImpValue visit(CondExp* e);
+  ImpValue visit(CommentExp* e);
 };
 
 

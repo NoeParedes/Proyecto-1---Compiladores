@@ -116,3 +116,8 @@ ImpType ImpTypeChecker::visit(CondExp* e) {
   return NOTYPE;
 }
 
+ImpType ImpTypeChecker::visit(CommentExp *e)
+{
+  return NOTYPE;
+    //return ImpType();
+}

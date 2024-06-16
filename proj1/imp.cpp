@@ -24,6 +24,7 @@ NumberExp::NumberExp(int v):value(v) {}
 IdExp::IdExp(string id):id(id) {}
 ParenthExp::ParenthExp(Exp *e):e(e){}
 CondExp::CondExp(Exp *c, Exp* et, Exp* ef):cond(c), etrue(et), efalse(ef){}
+CommentExp::CommentExp(Exp* e): exp(e) {} // Constructor de CommentExp
 
 Exp::~Exp() {}
 BinaryExp::~BinaryExp() { delete left; delete right; }
@@ -31,6 +32,7 @@ NumberExp::~NumberExp() { }
 IdExp::~IdExp() { }
 ParenthExp::~ParenthExp(){ delete e; }
 CondExp::~CondExp(){ delete cond; delete etrue; delete efalse; }
+CommentExp::~CommentExp() { delete exp; } // Destructor de CommentExp
 
 // ImpVisitor
 int BinaryExp::accept(ImpVisitor* v) {
@@ -46,6 +48,9 @@ int ParenthExp::accept(ImpVisitor* v) {
   return v->visit(this);
 }
 int CondExp::accept(ImpVisitor* v) {
+  return v->visit(this);
+}
+int CommentExp::accept(ImpVisitor* v) { // Método accept para CommentExp
   return v->visit(this);
 }
 
@@ -65,6 +70,9 @@ ImpValue ParenthExp::accept(ImpValueVisitor* v) {
 ImpValue CondExp::accept(ImpValueVisitor* v) {
   return v->visit(this);
 }
+ImpValue CommentExp::accept(ImpValueVisitor* v) { // Método accept para CommentExp
+  return v->visit(this);
+}
 
 // TypeVisitor
 ImpType BinaryExp::accept(TypeVisitor* v) {
@@ -80,6 +88,9 @@ ImpType ParenthExp::accept(TypeVisitor* v) {
   return v->visit(this);
 }
 ImpType CondExp::accept(TypeVisitor* v) {
+  return v->visit(this);
+}
+ImpType CommentExp::accept(TypeVisitor* v) { // Método accept para CommentExp
   return v->visit(this);
 }
 
@@ -195,9 +206,3 @@ void Body::accept(TypeVisitor* v) {
 void Program::accept(TypeVisitor* v) {
   return v->visit(this);
 }
-
-
-
-
-
-

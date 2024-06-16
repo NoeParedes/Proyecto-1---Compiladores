@@ -16,6 +16,7 @@ public:
   void visit(PrintStatement*);
   void visit(IfStatement*);
   void visit(WhileStatement*);
+  int visit(CommentExp* e);
 
   
   int visit(BinaryExp* e);

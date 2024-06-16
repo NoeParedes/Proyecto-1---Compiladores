@@ -3,10 +3,10 @@
 #include "imp_parser.hh"
 
 
-const char* Token::token_names[27] = {
+const char* Token::token_names[28] = {
   "LPAREN" , "RPAREN", "PLUS", "MINUS", "MULT","DIV","EXP","LT","LTEQ","EQ",
   "NUM", "ID", "PRINT", "SEMICOLON", "COMMA", "ASSIGN", "CONDEXP", "IF", "THEN", "ELSE", "ENDIF", "WHILE", "DO",
-  "ENDWHILE", "ERR", "END", "VAR" };
+  "ENDWHILE", "ERR", "END", "VAR","COMENTARIO" };
 
 Token::Token(Type type):type(type) { lexema = ""; }
 
@@ -74,7 +74,14 @@ Token* Scanner::nextToken() {
       if (c == '*') token = new Token(Token::EXP);
       else { rollBack(); token = new Token(Token::MULT); }
       break;     
-    case '/': token = new Token(Token::DIV); break;
+    case '/':
+      c = nextChar();
+      if (c == '/') {
+        while (c != '\n' && c != '\0') c = nextChar();
+          token = new Token(Token::COMENTARIO);
+        } else { 
+          rollBack(); token = new Token(Token::DIV); } 
+      break;
     case ';': token = new Token(Token::SEMICOLON); break;
     case ',': token = new Token(Token::COMMA); break;
     case '=': token = new Token(Token::ASSIGN); break;
@@ -147,6 +154,10 @@ bool Parser::advance() {
     Token* temp =current;
     if (previous) delete previous;
     current = scanner->nextToken();
+    while (current->type == Token::COMENTARIO){
+      delete current;
+      current = scanner->nextToken();
+    }
     previous = temp;
     if (check(Token::ERR)) {
       cout << "Parse error, unrecognised character: " << current->lexema << endl;

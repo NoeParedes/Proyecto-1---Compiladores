@@ -31,6 +31,7 @@ public:
   int visit(IdExp* e);
   int visit(ParenthExp* e);
   int visit(CondExp* e);
+  int visit(CommentExp* e);
 
 private:
   std::ostringstream code;

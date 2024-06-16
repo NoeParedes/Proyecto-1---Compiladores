@@ -119,3 +119,7 @@ int ImpPrinter::visit(CondExp* e) {
   cout << ')';
   return 0;
 }
+
+int ImpPrinter::visit(CommentExp* e){
+  cout << "//* " << e->exp << endl;
+}

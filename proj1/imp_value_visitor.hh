@@ -21,6 +21,7 @@ public:
   virtual ImpValue visit(IdExp* e) = 0;
   virtual ImpValue visit(ParenthExp* e) = 0;
   virtual ImpValue visit(CondExp* e) = 0;
+  virtual ImpValue visit(CommentExp* e) = 0;
 };
 
 

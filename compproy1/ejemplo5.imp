@@ -1,0 +1,5 @@
+var int x; // declaracion de variables
+// nueva linea
+var int y,z; //mas declaracion de variables
+x = 0;
+do x = x + 1; print(x) while x < 5

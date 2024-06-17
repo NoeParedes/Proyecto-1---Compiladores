@@ -1,4 +1,0 @@
-// inicio del programa
-var int x,y; // declaración de variables
-x = 1; y = 2; // asignación de variables
-print(x + y) // impresión de variables

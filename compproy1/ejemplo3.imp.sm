@@ -1,0 +1,11 @@
+alloc 1
+push  3
+push  4
+lt
+push  4
+push  3
+lt
+or
+store 0
+load 0
+print

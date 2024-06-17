@@ -1,5 +1,0 @@
-var bool x, y, z;
-x = true;
-y = false;
-z = x or y;
-print(z)

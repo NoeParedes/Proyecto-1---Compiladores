@@ -1,3 +1,0 @@
-var bool res;
-res = (3 < 4) or (4 < 3);
-print(res)
